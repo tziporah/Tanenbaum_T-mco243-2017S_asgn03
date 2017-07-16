@@ -1,0 +1,44 @@
+Tziporah Tanenbaum
+Asgn03
+
+PART 1:
+both enter main
+both enter while(!done){
+T2:
+	t2wantsToEnter = true;
+	while(favoredThread == 1) //it is, so enter this while loop
+	while(t1WantsToEnter); //this is false, so finish spinning
+T1:
+	t1WantsToEnter = true;
+	while(favoredThread == 2) //false, so skip while loop
+	ENTER CRITICAL SECTION
+T2:
+	favoredThread = 2;
+	ENTER CRITICAL SECTION
+
+PART 2:
+both enter main
+both enter while(!done)
+T1:
+	t1wantsToEnter = true;
+T2:
+	t2WantsToEnter = true;
+	while(favoredThread == 1){
+		while(t1WantsToEnter);
+T1:	
+	while(favoredThread == 2) //false, skip loop
+	//critical section
+	t1WantsToEnter = false;
+	//non-critical code
+	while(!done){
+	t1WantsToEnter = true;
+T2:
+	while(t1WantsToEnter);
+T1:	
+	while(favoredThread == 2) //false, skip loop
+	//critical section
+	t1WantsToEnter = false;
+	//non-critical code
+	while(!done){
+	t1WantsToEnter = true;
+... if repeated infinitely this would cause indefinite postponement
